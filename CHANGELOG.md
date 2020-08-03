@@ -3,10 +3,32 @@
 
 -------------------------------------------------------------------------------------------------------------
 
-## 5.3.11 (2020-07-23)
+# 5.4.0 (2020-08-01)
 
 ### 新特性
-### Bug修复
+* 【socket】     对NioServer和NioClient改造（pr#992@Github）
+* 【core  】     StrUtil增加filter方法（pr#149@Gitee）
+* 【core  】     DateUtil增加beginOfWeek重载
+* 【core  】     将有歧义的BeanUtil.mapToBean方法置为过期（使用toBean方法）
+* 【core  】     添加WatchAction（对Watcher的抽象）
+
+### Bug修复#
+* 【core  】     修复原始类型转换时，转换失败没有抛出异常的问题
+* 【core  】     修复BeanUtil.mapToBean中bean的class非空构造无法实例化问题
+
+-------------------------------------------------------------------------------------------------------------
+
+# 5.3.11 (2020-08-01)
+
+### 新特性
+* 【captcha】     AbstractCaptcha增加getImageBase64Data方法（pr#985@Github）
+* 【core   】     增加PhoneUtil（pr#990@Github）
+* 【core   】     改进Img，目标图片类型未定义使用源图片类型（issue#I1PB0B@Gitee）
+* 【json   】     JSONConfig增加Transient选项（issue#I1PLHN@Gitee）
+* 【core   】     MapUtil增加getXXX的默认值重载（issue#I1PTGI@Gitee）
+* 【core   】     CalendarUtil增加parseByPatterns方法（issue#993@Github）
+
+### Bug修复#
 
 -------------------------------------------------------------------------------------------------------------
 
