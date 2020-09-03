@@ -2731,14 +2731,14 @@ public class StrUtil {
 	}
 
 	/**
-	 * 包装多个字符串
+	 * 使用单个字符包装多个字符串
 	 *
 	 * @param prefixAndSuffix 前缀和后缀
 	 * @param strs            多个字符串
 	 * @return 包装的字符串数组
-	 * @since 4.0.7
+	 * @since 5.4.1
 	 */
-	public static String[] wrapAll(CharSequence prefixAndSuffix, CharSequence... strs) {
+	public static String[] wrapAllWithPair(CharSequence prefixAndSuffix, CharSequence... strs) {
 		return wrapAll(prefixAndSuffix, prefixAndSuffix, strs);
 	}
 
@@ -2792,14 +2792,14 @@ public class StrUtil {
 	}
 
 	/**
-	 * 包装多个字符串，如果已经包装，则不再包装
+	 * 使用成对的字符包装多个字符串，如果已经包装，则不再包装
 	 *
 	 * @param prefixAndSuffix 前缀和后缀
 	 * @param strs            多个字符串
 	 * @return 包装的字符串数组
-	 * @since 4.0.7
+	 * @since 5.4.1
 	 */
-	public static String[] wrapAllIfMissing(CharSequence prefixAndSuffix, CharSequence... strs) {
+	public static String[] wrapAllWithPairIfMissing(CharSequence prefixAndSuffix, CharSequence... strs) {
 		return wrapAllIfMissing(prefixAndSuffix, prefixAndSuffix, strs);
 	}
 
@@ -3427,7 +3427,7 @@ public class StrUtil {
 	 * @param start      起始位置，如果小于0，从0开始查找
 	 * @return 位置
 	 */
-	public static int indexOf(final CharSequence str, char searchChar, int start) {
+	public static int indexOf(CharSequence str, char searchChar, int start) {
 		if (str instanceof String) {
 			return ((String) str).indexOf(searchChar, start);
 		} else {
@@ -3445,6 +3445,9 @@ public class StrUtil {
 	 * @return 位置
 	 */
 	public static int indexOf(final CharSequence str, char searchChar, int start, int end) {
+		if(isEmpty(str)){
+			return INDEX_NOT_FOUND;
+		}
 		final int len = str.length();
 		if (start < 0 || start > len) {
 			start = 0;
@@ -3457,7 +3460,7 @@ public class StrUtil {
 				return i;
 			}
 		}
-		return -1;
+		return INDEX_NOT_FOUND;
 	}
 
 	/**
@@ -4336,5 +4339,46 @@ public class StrUtil {
 			}
 		}
 		return sb.toString();
+	}
+
+	/**
+	 * 返回第一个非{@code null} 元素
+	 *
+	 * @param strs 多个元素
+	 * @param <T>  元素类型
+	 * @return 第一个非空元素，如果给定的数组为空或者都为空，返回{@code null}
+	 * @since 5.4.1
+	 */
+	@SuppressWarnings("unchecked")
+	public <T extends CharSequence> T firstNonNull(T... strs) {
+		return ArrayUtil.firstNonNull(strs);
+	}
+
+	/**
+	 * 返回第一个非empty 元素
+	 *
+	 * @param strs 多个元素
+	 * @param <T>  元素类型
+	 * @return 第一个非空元素，如果给定的数组为空或者都为空，返回{@code null}
+	 * @since 5.4.1
+	 * @see #isNotEmpty(CharSequence)
+	 */
+	@SuppressWarnings("unchecked")
+	public <T extends CharSequence> T firstNonEmpty(T... strs) {
+			return ArrayUtil.firstMatch(StrUtil::isNotEmpty, strs);
+	}
+
+	/**
+	 * 返回第一个非blank 元素
+	 *
+	 * @param strs 多个元素
+	 * @param <T>  元素类型
+	 * @return 第一个非空元素，如果给定的数组为空或者都为空，返回{@code null}
+	 * @since 5.4.1
+	 * @see #isNotBlank(CharSequence)
+	 */
+	@SuppressWarnings("unchecked")
+	public <T extends CharSequence> T firstNonBlank(T... strs) {
+		return ArrayUtil.firstMatch(StrUtil::isNotBlank, strs);
 	}
 }

@@ -3,7 +3,48 @@
 
 -------------------------------------------------------------------------------------------------------------
 
-# 5.4.0 (2020-08-01)
+# 5.4.2 (2020-09-02)
+
+### 新特性
+* 【core  】     lock放在try外边（pr#1050@Github）
+* 【core  】     MailUtil增加错误信息（issue#I1TAKJ@Gitee）
+* 【core  】     JschUtil添加远程转发功能（pr#171@Gitee）
+* 【db    】     AbstractDb增加executeBatch重载（issue#1053@Github）
+
+### Bug修复#
+* 【core  】     重新整理农历节假日，解决一个pr过来的玩笑导致的问题
+* 【poi   】     修复ExcelFileUtil.isXls判断问题（pr#1055@Github）
+
+-------------------------------------------------------------------------------------------------------------
+
+# 5.4.1 (2020-08-29)
+
+### 新特性
+* 【core  】     StrUtil增加firstNonXXX方法（issue#1020@Github）
+* 【core  】     BeanCopier修改规则，可选bean拷贝空字段报错问题（pr#160@Gitee）
+* 【http  】     HttpUtil增加downloadFileFromUrl（pr#1023@Github）
+* 【core  】     增加toEpochMilli方法
+* 【core  】     Validator修改isCitizenId校验（pr#1032@Github）
+* 【core  】     增加PathUtil和FileNameUtil，分离FileUtil中部分方法
+* 【core  】     改造IndexedComparator，增加InstanceComparator
+* 【extra 】     增加CglibUtil
+* 【core  】     增加Ipv4Util（pr#161@Gitee）
+* 【core  】     增加CalendarUtil和DateUtil增加isSameMonth方法（pr#161@Gitee）
+* 【core  】     Dict增加of方法（issue#1035@Github）
+* 【core  】     StrUtil.wrapAll方法不明确修改改为wrapAllWithPair（issue#1042@Github）
+* 【core  】     EnumUtil.getEnumAt负数返回null（pr#167@Gitee）
+* 【core  】     ChineseDate增加天干地支和转换为公历方法（pr#169@Gitee）
+* 【core  】     Img增加stroke描边方法（issue#1033@Github）
+
+### Bug修复#
+* 【poi   】     修复ExcelBase.isXlsx方法判断问题（issue#I1S502@Gitee）
+* 【poi   】     修复Excel03SaxReader日期方法判断问题（pr#1026@Github）
+* 【core  】     修复StrUtil.indexOf空指针问题（issue#1038@Github）
+* 【extra 】     修复VelocityEngine编码问题和路径前缀问题（issue#I1T0IG@Gitee）
+
+-------------------------------------------------------------------------------------------------------------
+
+# 5.4.0 (2020-08-06)
 
 ### 新特性
 * 【socket】     对NioServer和NioClient改造（pr#992@Github）
@@ -11,10 +52,27 @@
 * 【core  】     DateUtil增加beginOfWeek重载
 * 【core  】     将有歧义的BeanUtil.mapToBean方法置为过期（使用toBean方法）
 * 【core  】     添加WatchAction（对Watcher的抽象）
+* 【core  】     修改UUID正则，更加严谨（issue#I1Q1IW@Gitee）
+* 【core  】     ArrayUtil增加isAllNull方法（issue#1004@Github）
+* 【core  】     CollUtil增加contains方法（pr#152@Gitee）
+* 【core  】     ArrayUtil增加isAllNotNull方法（pr#1008@Github）
+* 【poi   】     closeAfterRead参数无效，方法设为过期（issue#1007@Github）
+* 【core  】     CollUtil中部分方法返回null变更为返回empty
+* 【all   】     添加英文README（pr#153@Gitee）
+* 【extra 】     SpringUtil增加getBean(TypeReference)（pr#1009@Github）
+* 【core  】     Assert增加方法，支持自定义异常处理（pr#154@Gitee）
+* 【core  】     BooleanConverter增加数字转换规则（issue#I1R2AB@Gitee）
+* 【poi   】     sax方式读取增加一个sheet结束的回调（issue#155@Gitee）
+* 【db    】     增加BeeCP连接池支持
+* 【core  】     改进Img.pressImage方法，避免变色问题（issue#1001@Github）
 
 ### Bug修复#
 * 【core  】     修复原始类型转换时，转换失败没有抛出异常的问题
 * 【core  】     修复BeanUtil.mapToBean中bean的class非空构造无法实例化问题
+* 【core  】     修复NamedSql多个连续变量出现替换问题
+* 【core  】     修复Bean重名字段（大小写区别）获取数据出错的问题（issue#I1QBQ4@Gitee）
+* 【http  】     修复SimpleServer响应头无效问题（issue#1006@Github）
+* 【core  】     修复ThreadLocalRandom共享seed导致获取随机数一样的问题（pr#151@Gitee）
 
 -------------------------------------------------------------------------------------------------------------
 
@@ -92,7 +150,7 @@
 * 【core   】     增加StrUtil.removeAny方法(issue#923@Github)
 * 【db     】     增加部分Connection参数支持(issue#924@Github)
 * 【core   】     FileUtil增加别名方法(pr#926@Github)
-* 【poi    】     EcelReader中增加read重载，提供每个单元格单独处理的方法(issue#I1JZTL@Gitee)
+* 【poi    】     ExcelReader中增加read重载，提供每个单元格单独处理的方法(issue#I1JZTL@Gitee)
 
 ### Bug修复
 * 【json   】     修复append方法导致的JSONConfig传递失效问题（issue#906@Github）
@@ -125,7 +183,7 @@
 * 【extra  】     新增 QRCode base64 编码形式返回（pr#878@Github）
 * 【core   】     ImgUtil增加toBase64DateUri，URLUtil增加getDataUri方法
 * 【core   】     IterUtil添加List转Map的工具方法（pr#123@Gitee）
-* 【core   】     BeanValuePovider转换失败时，返回原数据，而非null
+* 【core   】     BeanValueProvider转换失败时，返回原数据，而非null
 * 【core   】     支持BeanUtil.toBean(object, Map.class)转换（issue#I1I4HC@Gitee）
 * 【core   】     MapUtil和CollUtil增加clear方法（issue#I1I4HC@Gitee）
 * 【core   】     增加FontUtil，可定义pressText是否从中间（issue#I1HSWU@Gitee）
